@@ -15,7 +15,7 @@ public class SfgDiApplication {
 		System.out.println("--- The Best Pet is ---");
 		System.out.println(petController.whichPetIsTheBest());
 
-		I18nController i18nController = (I18nController) ctx.getBean("i18nController");
+		I18NController i18nController = (I18NController) ctx.getBean("i18NController");
 		System.out.println(i18nController.sayHello());
 
 		MyController myController = (MyController) ctx.getBean("myController");
