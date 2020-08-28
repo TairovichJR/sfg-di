@@ -1,54 +1,39 @@
 package guru.springframework;
 
+import guru.springframework.controllers.*;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
-
-import guru.springframework.controllers.ConstructorInjectredController;
-import guru.springframework.controllers.I18NController;
-import guru.springframework.controllers.MyController;
-import guru.springframework.controllers.PropertyInjectedController;
-import guru.springframework.controllers.SetterInjectedController;
 
 @SpringBootApplication
 public class SfgDiApplication {
 
 	public static void main(String[] args) {
-		ApplicationContext context = SpringApplication.run(SfgDiApplication.class, args);
-		
-		
-		I18NController i18nController = (I18NController) context.getBean("i18NController");
-		
+		ApplicationContext ctx = SpringApplication.run(SfgDiApplication.class, args);
+
+		PetController petController = ctx.getBean("petController", PetController.class);
+		System.out.println("--- The Best Pet is ---");
+		System.out.println(petController.whichPetIsTheBest());
+
+		I18nController i18nController = (I18nController) ctx.getBean("i18nController");
 		System.out.println(i18nController.sayHello());
-		
-		
-		MyController myController = (MyController) context.getBean("myController");
-		
-		System.out.println("------------Primary Bean based ------------------");
-		
+
+		MyController myController = (MyController) ctx.getBean("myController");
+
+		System.out.println("------- Primary Bean");
 		System.out.println(myController.sayHello());
-		
-		System.out.println("------------Property based Controller ------------------");
-		
-		PropertyInjectedController propertyInjectedController = (PropertyInjectedController)context.getBean("propertyInjectedController");
-		
+
+		System.out.println("------ Property");
+		PropertyInjectedController propertyInjectedController = (PropertyInjectedController) ctx.getBean("propertyInjectedController");
 		System.out.println(propertyInjectedController.getGreeting());
-		
-		System.out.println("------------Setter based Controller ------------------");
-		
-		SetterInjectedController setterInjectedController = (SetterInjectedController)context.getBean("setterInjectedController");
+
+		System.out.println("--------- Setter");
+		SetterInjectedController setterInjectedController = (SetterInjectedController) ctx.getBean("setterInjectedController");
 		System.out.println(setterInjectedController.getGreeting());
-		
-		
-		System.out.println("------------Constructor based Controller ------------------");
-		
-		
-		ConstructorInjectredController constructorInjectredController = (ConstructorInjectredController)context.getBean("constructorInjectredController");
-		
-		System.out.println(constructorInjectredController.getGreeting());
-		
-		
-		
+
+		System.out.println("-------- Constructor" );
+		ConstructorInjectedController constructorInjectedController = (ConstructorInjectedController) ctx.getBean("constructorInjectedController");
+		System.out.println(constructorInjectedController.getGreeting());
 	}
 
 }

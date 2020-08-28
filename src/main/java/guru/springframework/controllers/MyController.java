@@ -1,22 +1,21 @@
 package guru.springframework.controllers;
 
+import guru.springframework.services.GreetingService;
 import org.springframework.stereotype.Controller;
 
-import guru.springframework.services.GreetingService;
-
+/**
+ * Created by jt on 12/26/19.
+ */
 @Controller
 public class MyController {
 
-	
-	private final GreetingService greetingService;
-	
-	public MyController(GreetingService greetingService) {
-		super();
-		this.greetingService = greetingService;
-	}
+    private final GreetingService greetingService;
 
-	public String sayHello() {
-	
-		return greetingService.sayGreeting();
-	}
+    public MyController(GreetingService greetingService) {
+        this.greetingService = greetingService;
+    }
+
+    public String sayHello(){
+        return greetingService.sayGreeting();
+    }
 }
